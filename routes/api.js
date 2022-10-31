@@ -40,10 +40,10 @@ module.exports = function (app) {
     .delete(async function(req, res){
       //if successful response will be 'complete delete successful'
       try {
-        await Book.deleteMany()
-        res.send("complete delete successful")
+        await Book.deleteMany();
+        res.send("complete delete successful");
       } catch (err) {
-        res.send(err.message)
+        res.send(err.message);
       }
     });
 
@@ -80,7 +80,11 @@ module.exports = function (app) {
     .delete(async function(req, res){
       let bookId = req.params.id;
       try {
-        await Book.findByIdAndRemove(bookId);
+        const book = await Book.findById(bookId);
+        if (!book) {
+          return res.send("no book exists");
+        }
+        await book.deleteOne();
         res.send("delete successful");
       } catch (err) {
         res.send("no book exists");
