@@ -26,7 +26,6 @@ suite('Functional Tests', function() {
       .get('/api/books')
       .end(function(err, res){
         assert.equal(res.status, 200);
-        console.log("res", res.body)
         assert.isArray(res.body, 'response should be an array');
         assert.property(res.body[0], 'commentcount', 'Books in array should contain commentcount');
         assert.property(res.body[0], 'title', 'Books in array should contain title');
@@ -51,10 +50,9 @@ suite('Functional Tests', function() {
       });
     });
     //After all tests are finished drop database and close connection
-    after(function(done){
-      mongoose.connection.db.dropDatabase(function(){
-        mongoose.connection.close(done);
-      });
+    after(async function(done){
+      await mongoose.connection.db.dropDatabase();
+      mongoose.connection.close(done);
     });
 
     suite('POST /api/books with title => create book object/expect book object', function() {
