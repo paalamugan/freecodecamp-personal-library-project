@@ -40,21 +40,21 @@ suite('Functional Tests', function() {
   suite('Routing tests', function() {
     //Before starting the test, create a sandboxed database connection
     //Once a connection is established invoke done()
-    before(function (done) {
-      mongoose.connect(process.env.DB);
-      const db = mongoose.connection;
-      db.on('error', console.error.bind(console, 'connection error'));
-      db.once('open', function() {
-        console.log('We are connected to test database!');
-        done();
-      });
-    });
+    // before(function (done) {
+    //   mongoose.connect(process.env.DB);
+    //   const db = mongoose.connection;
+    //   db.on('error', console.error.bind(console, 'connection error'));
+    //   db.once('open', function() {
+    //     console.log('We are connected to test database!');
+    //     done();
+    //   });
+    // });
     //After all tests are finished drop database and close connection
-    after(function(done){
-      mongoose.connection.db.dropDatabase(function(){
-        mongoose.connection.close(done);
-      });
-    });
+    // after(function(done){
+    //   mongoose.connection.db.dropDatabase(function(){
+    //     mongoose.connection.close(done);
+    //   });
+    // });
 
     suite('POST /api/books with title => create book object/expect book object', function() {
       
