@@ -50,11 +50,12 @@ suite('Functional Tests', function() {
       });
     });
     //After all tests are finished drop database and close connection
-    // after(function(done){
-    //   mongoose.connection.db.dropDatabase(function(){
-    //     mongoose.connection.close(done);
-    //   });
-    // });
+    after(function(done){
+      mongoose.connection.close(done);
+      // mongoose.connection.db.dropDatabase(function(){
+      //   mongoose.connection.close(done);
+      // });
+    });
 
     suite('POST /api/books with title => create book object/expect book object', function() {
       
