@@ -9,6 +9,7 @@ const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
+require('./db');
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -50,8 +51,6 @@ const listener = app.listen(process.env.PORT || 3000, function () {
           console.error(e);
       }
     }, 1500);
-  } else {
-    require('./db');
   }
 });
 
